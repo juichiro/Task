@@ -1,0 +1,26 @@
+h1 タスクの詳細
+
+.nav.justify-content-end
+  = link_to '一覧', todos_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th ID
+      td= @todo.id
+    tr
+      th 名称
+      td= @todo.name
+    tr
+      th 詳細
+      td= auto_link(simple_format(h(@todo.description),{}, sanitize: false, wrapper_tag: "div"))
+    tr
+      th 登録日時
+      td= @todo.created_at
+    tr
+      th 更新日時
+      td= @todo.updated_at
+    
+
+= link_to '編集', edit_todo_path(@todo), class: 'btn btn-primary mr-3'
+= link_to '削除', @todo, method: :delete, data: { confirm: "タスク「#{@todo.name}」を削除してよろしいでしょうか?"}, class: 'btn btn-danger'
+      
